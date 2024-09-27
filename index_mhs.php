@@ -59,6 +59,16 @@
                                 </div>
                             </a>
                         </div>
+                        <div class="icon-box bg-color-11">
+                            <div class="icon bg-icon-11">
+                                <i class="bx bx-task color-white"></i>
+                            </div>
+                            <a href="index_perkuliahan.php">
+                                <div class="content">
+                                    <h3 class="m-2">Perkuliahan</h3>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="box">
                         <div class="box-body">

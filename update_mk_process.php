@@ -3,7 +3,7 @@ require 'koneksi.php';
 
 function updateMatkul($conn, $kode, $nama, $sks)
 {
-    $sql = "UPDATE mata_kuliah SET nama=?, sks=? WHERE kode=?";
+    $sql = "UPDATE matkul SET nama=?, sks=? WHERE kode_mk=?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$nama, $sks, $kode]);
     echo "

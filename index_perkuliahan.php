@@ -43,9 +43,9 @@
                             <div class="icon bg-icon-2">
                                 <i class="bx bx-task"></i>
                             </div>
-                            <a href="index_khs.php">
+                            <a href="index_dosen.php">
                                 <div class="content">
-                                    <h3 class="m-2">Nilai</h3>
+                                    <h3 class="m-2">Dosen</h3>
                                 </div>
                             </a>
                         </div>
