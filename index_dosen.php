@@ -133,7 +133,7 @@
                                                                 echo "<td>" . $row["nama"] . "</td>";
                                                                 echo "<td>" . $row["no_wa"] . "</td>";
                                                                 // echo "<td>" . $row["tanggal_lahir"] . "</td>";
-                                                                echo "<td><a href='update_mhs_view.php?nim=" . $row["nip"] . "'>Edit</a> | <a href='delete_mhs_view.php?nip=" . $row["nip"] . "'>Hapus</a></td>"; // Tautan untuk mengedit dan menghapus
+                                                                echo "<td><a href='update_dosen_view.php?nip=" . $row["nip"] . "'>Edit</a> | <a href='delete_dosen_view.php?nip=" . $row["nip"] . "'>Hapus</a></td>"; // Tautan untuk mengedit dan menghapus
                                                                 echo "</tr>";
                                                             }
                                                         } else {
