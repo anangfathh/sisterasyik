@@ -3,7 +3,7 @@ require 'koneksi.php';
 
 function hapusMatkul($conn, $kode)
 {
-    $sql = "DELETE FROM mata_kuliah WHERE kode=?";
+    $sql = "DELETE FROM matkul WHERE kode_mk=?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$kode]);
     echo "

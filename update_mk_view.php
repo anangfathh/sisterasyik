@@ -37,13 +37,43 @@
                                         <input type="text" class="form-control" id="kode" name="kode"
                                             value="<?php echo $_GET['kode']; ?>" readonly />
                                     </div>
+                                    <?php
+                                    require 'koneksi.php';
+
+                                    // Pastikan kode_mk didapatkan dari URL
+                                    if (isset($_GET['kode'])) {
+                                        $kode_mk = $_GET['kode'];
+
+                                        // Query untuk mengambil nama dan sks berdasarkan kode_mk
+                                        $sql = "SELECT * FROM matkul WHERE kode_mk = ?";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute([$kode_mk]);
+
+                                        // Jika data ditemukan
+                                        if ($stmt->rowCount() > 0) {
+                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            $nama = $row['nama'];
+                                            $sks = $row['sks'];
+                                        } else {
+                                            // Jika data tidak ditemukan
+                                            $nama = '';
+                                            $sks = '';
+                                        }
+                                    } else {
+                                        // Jika kode tidak ada di URL
+                                        $nama = '';
+                                        $sks = '';
+                                    }
+
+                                    ?>
+
                                     <div class="mb-24">
                                         <label class="form-label mb-14">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" />
+                                        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo htmlspecialchars($nama); ?>"/>
                                     </div>
                                     <div class="mb-24">
                                         <label class="form-label mb-14">SKS</label>
-                                        <input type="text" class="form-control" id="sks" name="sks" />
+                                        <input type="text" class="form-control" id="sks" name="sks" value="<?php echo htmlspecialchars($sks); ?>"/>
                                     </div>
 
                                     <div class="mb-3">
