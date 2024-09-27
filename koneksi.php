@@ -1,7 +1,7 @@
 <?php
-$servername = "172.20.10.2";
-$username = "web1_user";
-$password = "password";
+$servername = "172.20.10.3";
+$username = "ws2_user";
+$password = "irzanpassword";
 $database = "kuliah";
 
 try {

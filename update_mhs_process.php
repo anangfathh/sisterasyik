@@ -1,11 +1,11 @@
 <?php
 require 'koneksi.php';
 
-function updateMahasiswa($conn, $nim, $nama, $alamat, $tanggal_lahir)
+function updateMahasiswa($conn, $nim, $nama, $alamat)
 {
-    $sql = "UPDATE mahasiswa SET nama=?, alamat=?, tanggal_lahir=? WHERE nim=?";
+    $sql = "UPDATE mahasiswa SET nama=?, alamat=? WHERE nim=?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$nama, $alamat, $tanggal_lahir, $nim]);
+    $stmt->execute([$nama, $alamat, $nim]);
     echo "
             <script>
                 alert('Data Mahasiswa Berhasil di Update!!');
@@ -18,9 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nim = $_POST["nim"];
     $nama = $_POST["nama"];
     $alamat = $_POST["alamat"];
-    $tanggal_lahir = $_POST["tanggal_lahir"];
 
-    updateMahasiswa($conn, $nim, $nama, $alamat, $tanggal_lahir);
+    updateMahasiswa($conn, $nim, $nama, $alamat);
 }
 
 $conn = null;
