@@ -37,18 +37,42 @@
                                         <input type="text" class="form-control" id="nim" name="nim"
                                             value="<?php echo $_GET['nim']; ?>" readonly />
                                     </div>
+                                    <?php
+                                    require 'koneksi.php';
+
+                                    // Pastikan nim didapatkan dari URL
+                                    if (isset($_GET['nim'])) {
+                                        $nim = $_GET['nim'];
+
+                                        // Query untuk mengambil nama dan alamat berdasarkan nim
+                                        $sql = "SELECT * FROM mahasiswa WHERE nim = ?";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute([$nim]);
+
+                                        // Jika data ditemukan
+                                        if ($stmt->rowCount() > 0) {
+                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            $nama = $row['nama'];
+                                            $alamat = $row['alamat'];
+                                        } else {
+                                            // Jika data tidak ditemukan
+                                            $nama = '';
+                                            $alamat = '';
+                                        }
+                                    } else {
+                                        // Jika kode tidak ada di URL
+                                        $nama = '';
+                                        $alamat = '';
+                                    }
+
+                                    ?>
                                     <div class="mb-24">
                                         <label class="form-label mb-14">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" />
+                                        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo htmlspecialchars($nama); ?>"/>
                                     </div>
                                     <div class="mb-24">
                                         <label class="form-label mb-14">Alamat</label>
-                                        <input type="text" class="form-control" id="alamat" name="alamat" />
-                                    </div>
-                                    <div class="mb-24">
-                                        <label class="form-label mb-14">Nama</label>
-                                        <input type="date" id="tanggal_lahir" name="tanggal_lahir"
-                                            class="form-control" />
+                                        <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo htmlspecialchars($alamat); ?>"/>
                                     </div>
                                     <div class="mb-3">
                                         <button

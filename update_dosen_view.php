@@ -37,13 +37,42 @@
                                         <input type="text" class="form-control" id="nip" name="nip"
                                             value="<?php echo $_GET['nip']; ?>" readonly />
                                     </div>
+                                    <?php
+                                    require 'koneksi.php';
+
+                                    // Pastikan nim didapatkan dari URL
+                                    if (isset($_GET['nip'])) {
+                                        $nip = $_GET['nip'];
+
+                                        // Query untuk mengambil nama dan no_wa berdasarkan nim
+                                        $sql = "SELECT * FROM dosen WHERE nip = ?";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute([$nip]);
+
+                                        // Jika data ditemukan
+                                        if ($stmt->rowCount() > 0) {
+                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            $nama = $row['nama'];
+                                            $no_wa = $row['no_wa'];
+                                        } else {
+                                            // Jika data tidak ditemukan
+                                            $nama = '';
+                                            $no_wa = '';
+                                        }
+                                    } else {
+                                        // Jika kode tidak ada di URL
+                                        $nama = '';
+                                        $no_wa = '';
+                                    }
+
+                                    ?>
                                     <div class="mb-24">
                                         <label class="form-label mb-14">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" />
+                                        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo htmlspecialchars($nama); ?>"/>
                                     </div>
                                     <div class="mb-24">
                                         <label class="form-label mb-14">Nomor WhatsApp</label>
-                                        <input type="text" class="form-control" id="no_wa" name="no_wa" />
+                                        <input type="text" class="form-control" id="no_wa" name="no_wa" value="<?php echo htmlspecialchars($no_wa); ?>"/>
                                     </div>
                                     <div class="mb-3">
                                         <button

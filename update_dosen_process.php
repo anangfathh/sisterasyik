@@ -8,7 +8,7 @@ function updateDosen($conn, $nip, $nama, $no_Wa)
     $stmt->execute([$nama, $no_Wa, $nip]);
     echo "
             <script>
-                alert('Data DOsen Berhasil di Update!!');
+                alert('Data Dosen Berhasil di Update!!');
                 document.location.href = 'index_dosen.php';
             </script>
         ";
